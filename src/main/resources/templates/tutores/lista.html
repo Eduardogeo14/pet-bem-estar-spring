@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<head>
+	<meta charset="UTF-8">
+	<title>Lista de tutores</title>
+</head>
+
+<body>
+	
+	<a th:href="@{/paginas/tutores/novo}">Cadastrar novo tutor</a>
+	<h1>Lista de tutores</h1>
+	<br>
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nome</th>
+				<th>Email</th>
+				<th>Telefone</th>
+				<th>Ações</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="tutor : ${tutores}">
+				<td th:text="${tutor.id}">Id</td>
+				<td th:text="${tutor.nome}">Nome</td>
+				<td th:text="${tutor.email}">Email</td>
+				<td th:text="${tutor.telefone}">Telefone</td>
+				<td>
+					<a th:href="@{/paginas/tutores/{id}/editar(id=${tutor.id})}">Editar</a>
+					<form th:action="@{/paginas/tutores/{id}/remover(id=${tutor.id})}" method="post" style="display:inline">
+					<button type="submit" onclick="return confirm('Tem certeza que deseja remover este tutor?');">Remover</button>
+					</form>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+		</body>
+		</html>

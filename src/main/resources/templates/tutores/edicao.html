@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Edição de tutor</title>
+</head>
+
+<body>
+	<form th:action="@{/paginas/tutores/editar}" th:object="${tutor}" method="post">
+		<input type="hidden" th:field="*{id}">
+		
+		<p>
+					<label>Nome</label>
+					<input type="text" th:field="*{nome}">
+					<span th:errors="*{nome}" style="color:red"></span>
+				</p>
+				
+				<p>
+					<label>Email</label>
+					<input type="text" th:field="*{email}">
+					<span th:errors="*{email}" style="color:red"></span>
+				</p>
+				
+				<p>
+					<label>Telefone</label>
+					<input type="text" th:field="*{telefone}">
+					<span th:errors="*{telefone}" style="color:red"></span>
+				</p>
+				
+				
+				<button type="submit">Salvar</button>
+				<a th:href="@{/paginas/tutores}">Cancelar</a>
+				</form>
+				</body>
+				</html>
+					
