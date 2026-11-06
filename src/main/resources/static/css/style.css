@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', 'Segoe UI', sans-serif; 
+}
+
+body {
+    background-color: #f4f8f5; 
+    color: #2d3748;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #1b4332; 
+    margin-bottom: 25px;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: #40916c;
+    border-radius: 2px;
+}
+
+/* Links e Botões */
+a {
+    color: #2d6a4f;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #1b4332;
+    text-decoration: underline;
+}
+
+
+.btn-novo {
+    background-color: #40916c; 
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 25px;
+    font-weight: 700;
+    box-shadow: 0 4px 6px rgba(64, 145, 108, 0.2); 
+    transition: all 0.3s ease;
+}
+
+.btn-novo:hover {
+    background-color: #2d6a4f;
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 12px rgba(64, 145, 108, 0.3);
+}
+
+
+table {
+    width: 100%;
+    max-width: 800px;
+    border-collapse: separate; 
+    border-spacing: 0;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden; 
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04); 
+    margin-bottom: 30px;
+}
+
+th, td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid #edf2f7;
+}
+
+th {
+    background-color: #2d6a4f;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
+
+tr:last-child td {
+    border-bottom: none; 
+}
+
+tr:hover {
+    background-color: #f0fdf4;
+    transition: background-color 0.2s;
+}
+
+/* Formulários */
+form {
+    background-color: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    max-width: 500px;
+}
+
+form p {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #2d6a4f;
+    font-size: 0.95rem;
+}
+
+input[type="text"], input[type="email"], input[type="number"], select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f8fafc;
+    transition: all 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #40916c;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(64, 145, 108, 0.15);
+}
+
+
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-right: 10px;
+}
+
+button[type="submit"] {
+    background-color: #40916c;
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background-color: #2d6a4f;
+    transform: translateY(-1px);
+}
+
+
+.btn-remover {
+    background-color: #fee2e2 !important; 
+    color: #b91c1c !important; 
+    padding: 8px 16px;
+    font-size: 14px;
+    border: 1px solid transparent;
+}
+
+.btn-remover:hover {
+    background-color: #ef4444 !important;
+    color: white !important;
+}
+
+
+span[style="color:red"] {
+    color: #dc2626 !important;
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 6px;
+    font-weight: 600;
+}
+
+td form {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    display: inline;
+}

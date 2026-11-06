@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edição de Bicho</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Editar Bicho</h1>
+
+    <form th:action="@{/paginas/bichos/editar}" th:object="${bicho}" method="post">
+        <input type="hidden" th:field="*{id}">
+        
+        <p>
+            <label>Nome do Bicho</label>
+            <input type="text" th:field="*{nome}">
+            <span th:errors="*{nome}" style="color:red"></span>
+        </p>
+
+        <p>
+            <label>Dono</label>
+            <select th:field="*{dono.id}">
+                <option th:each="t : ${tutores}" th:value="${t.id}" th:text="${t.nome}"></option>
+            </select>
+            <span th:errors="*{dono}" style="color:red"></span>
+        </p>
+
+        <p>
+            <label>Tipo</label>
+            <select th:field="*{tipo}">
+                <option th:each="tp : ${tipos}" th:value="${tp}" th:text="${tp}"></option>
+            </select>
+            <span th:errors="*{tipo}" style="color:red"></span>
+        </p>
+
+        <p>
+            <label>Tamanho</label>
+            <select th:field="*{tamanho}">
+                <option th:each="tm : ${tamanhos}" th:value="${tm}" th:text="${tm}"></option>
+            </select>
+            <span th:errors="*{tamanho}" style="color:red"></span>
+        </p>
+
+        <button type="submit">Salvar</button>
+        <a th:href="@{/paginas/bichos}">Cancelar</a>
+    </form>
+</body>
+</html>

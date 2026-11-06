@@ -1,39 +1,34 @@
 <!DOCTYPE html>
-
 <html xmlns:th="http://www.thymeleaf.org">
-	
 <head>
-	<meta charset="UTF-8">
-	<title>Cadastro de Tutor</title>
+    <meta charset="UTF-8">
+    <title>Cadastro de Tutor</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-
 <body>
-	<h1>Cadastro de tutor</h1>
-	<br>
-	<form th:action="@{/paginas/tutores/novo}" th:object="${tutor}" method="post">
-		
-		<p>
-			<label>Nome</label>
-			<input type="text" th:field="*{nome}">
-			<span th:errors="*{nome}" style="color:red"></span>
-		</p>
-		
-		<p>
-			<label>Email</label>
-			<input type="text" th:field="*{email}">
-			<span th:errors="*{email}" style="color:red"></span>
-		</p>
-		
-		<p>
-			<label>Telefone</label>
-			<input type="text" th:field="*{telefone}">
-			<span th:errors="*{telefone}" style="color:red"></span>
-		</p>
-		
-		
-		<button type="submit">Salvar</button>
-		<a th:href="@{/paginas/tutores}">Cancelar</a>
-		</form>
-		</body>
-		</html>
-			
+    <h1>Cadastrar Novo Tutor</h1>
+    
+    <form th:action="@{/paginas/tutores/novo}" th:object="${tutor}" method="post">
+        <p>
+            <label>Nome</label>
+            <input type="text" th:field="*{nome}">
+            <span th:errors="*{nome}"></span>
+        </p>
+        
+        <p>
+            <label>Email</label>
+            <input type="email" th:field="*{email}">
+            <span th:errors="*{email}"></span>
+        </p>
+
+        <p>
+            <label>Telefone</label>
+            <input type="text" th:field="*{telefone}">
+            <span th:errors="*{telefone}"></span>
+        </p>
+        
+        <button type="submit">Salvar</button>
+        <a th:href="@{/paginas/tutores}">Cancelar</a>
+    </form>
+</body>
+</html>

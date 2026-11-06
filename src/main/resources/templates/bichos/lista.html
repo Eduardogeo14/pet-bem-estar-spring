@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Bichos</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Lista de Bichos</h1>
+    <a th:href="@{/paginas/bichos/novo}">Cadastrar Novo Bicho</a>
+    <br><br>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Tamanho</th>
+                <th>Dono</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="b : ${bichos}">
+                <td th:text="${b.id}">1</td>
+                <td th:text="${b.nome}">Rex</td>
+                <td th:text="${b.tipo}">CACHORRO</td>
+                <td th:text="${b.tamanho}">MEDIO</td>
+                <td th:text="${b.dono.nome}">Nome do Dono</td>
+                <td>
+                    <a th:href="@{/paginas/bichos/{id}/editar(id=${b.id})}">Editar</a>
+                    <form th:action="@{/paginas/bichos/{id}/remover(id=${b.id})}" method="post" style="display:inline">
+                        <button type="submit" onclick="return confirm('Tem certeza que deseja remover?');">Remover</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
