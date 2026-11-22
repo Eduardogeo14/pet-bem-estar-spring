@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro - Pet Bem-Estar</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div th:replace="~{fragments/cabecalho :: cabecalho}"></div>
+    <div class="login-container">
+        <h1>Pet Bem-Estar</h1>
+        <p style="text-align: center; color: #555;">Crie seu usuário</p>
+
+        <div th:if="${erro}" style="color: red; margin-bottom: 15px; text-align: center;" th:text="${erro}"></div>
+
+        <form th:action="@{/cadastro}" method="post">
+            <p>
+                <label>Usuário ou E-mail</label>
+                <input type="text" name="email" th:value="${email}" required>
+            </p>
+            <p>
+                <label>Senha</label>
+                <input type="password" name="senha" required minlength="4">
+            </p>
+            <button type="submit" class="btn-novo" style="width: 100%;">Cadastrar</button>
+        </form>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a th:href="@{/login}">Voltar para o login</a>
+        </div>
+    </div>
+</body>
+</html>

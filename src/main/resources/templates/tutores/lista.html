@@ -6,10 +6,23 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+
+    <!-- Cabeçalho -->
+    <div th:replace="~{fragments/cabecalho :: cabecalho}"></div>
+
+    <!-- Alerta de Sucesso -->
+    <div th:if="${mensagem}" class="alerta-sucesso">
+        <span th:text="${mensagem}"></span>
+    </div>
+
+    <!-- Alerta de Erro (ex: não pode remover tutor com bicho) -->
+    <div th:if="${erro}" class="alerta-erro">
+        <span th:text="${erro}"></span>
+    </div>
+
     <h1>Lista de Tutores</h1>
     
-    
-    <a th:href="@{/paginas/tutores/novo}" class="btn-novo">Cadastrar Novo Tutor</a>
+    <a th:href="@{/paginas/tutores/novo}" class="btn-novo" style="margin-bottom: 20px;">Cadastrar Novo Tutor</a>
     
     <table>
         <thead>
@@ -24,7 +37,9 @@
         <tbody>
             <tr th:each="tutor : ${tutores}">
                 <td th:text="${tutor.id}">Id</td>
-                <td th:text="${tutor.nome}">Nome</td>
+                <td>
+                    <a th:href="@{/paginas/tutores/{id}(id=${tutor.id})}" th:text="${tutor.nome}"></a>
+                </td>
                 <td th:text="${tutor.email}">Email</td>
                 <td th:text="${tutor.telefone}">Telefone</td>
                 <td>
@@ -36,5 +51,6 @@
             </tr>
         </tbody>
     </table>
+
 </body>
 </html>

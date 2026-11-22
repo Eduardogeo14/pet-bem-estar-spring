@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <header th:fragment="cabecalho">
+        <div class="header-container">
+            <a th:href="@{/paginas/tutores}">
+                <img th:src="@{/img/logo-pet.jpg}" alt="Logo Pet Bem-Estar" style="height: 80px; width: auto;">
+            </a>
+
+            <div class="nav-links">
+                <div th:if="${session.usuarioLogado != null}" style="display: flex; align-items: center; gap: 20px;">
+                    <span th:text="'Olá, ' + ${session.usuarioLogado}"></span>
+                    <a th:href="@{/paginas/tutores}">Tutores</a>
+                    <a th:href="@{/paginas/bichos}">Bichos</a>
+                    <a th:href="@{/sair}" class="sair">Sair</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+</body>
+</html>

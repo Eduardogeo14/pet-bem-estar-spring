@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Bichos</title>
-	<link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <h1>Lista de Bichos</h1>
-    <a th:href="@{/paginas/bichos/novo}">Cadastrar Novo Bicho</a>
-    <br><br>
 
-    <table border="1">
+    <div th:replace="~{fragments/cabecalho :: cabecalho}"></div>
+
+    <h1>Lista de Bichos</h1>
+    
+    <a th:href="@{/paginas/bichos/novo}" class="btn-novo" style="margin-bottom: 20px;">Cadastrar Novo Bicho</a>
+    
+    <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Tipo</th>
                 <th>Tamanho</th>
-                <th>Dono</th>
+                <th>Tutor</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -27,15 +30,16 @@
                 <td th:text="${b.nome}">Rex</td>
                 <td th:text="${b.tipo}">CACHORRO</td>
                 <td th:text="${b.tamanho}">MEDIO</td>
-                <td th:text="${b.dono.nome}">Nome do Dono</td>
+                <td th:text="${b.tutor.nome}">Nome do Tutor</td>
                 <td>
                     <a th:href="@{/paginas/bichos/{id}/editar(id=${b.id})}">Editar</a>
                     <form th:action="@{/paginas/bichos/{id}/remover(id=${b.id})}" method="post" style="display:inline">
-                        <button type="submit" onclick="return confirm('Tem certeza que deseja remover?');">Remover</button>
+                        <button type="submit" class="btn-remover" onclick="return confirm('Tem certeza que deseja remover?');">Remover</button>
                     </form>
                 </td>
             </tr>
         </tbody>
     </table>
+
 </body>
 </html>

@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Bicho</title>
-	<link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+
+    <div th:replace="~{fragments/cabecalho :: cabecalho}"></div>
+
     <h1>Cadastrar Novo Bicho</h1>
 
     <form th:action="@{/paginas/bichos/novo}" th:object="${bicho}" method="post">
         
+        <div th:if="${erro}" style="color: red; margin-bottom: 15px; font-weight: bold; text-align: center;" th:text="${erro}"></div>
+
         <p>
             <label>Nome do Bicho</label>
             <input type="text" th:field="*{nome}">
@@ -17,11 +22,12 @@
         </p>
 
         <p>
-            <label>Dono</label>
-            <select th:field="*{dono.id}">
+            <label>Tutor</label>
+            <select th:field="*{tutor.id}">
+                <option value="">Selecione um tutor...</option>
                 <option th:each="t : ${tutores}" th:value="${t.id}" th:text="${t.nome}"></option>
             </select>
-            <span th:errors="*{dono}" style="color:red"></span>
+            <span th:errors="*{tutor}" style="color:red"></span>
         </p>
 
         <p>
@@ -43,5 +49,6 @@
         <button type="submit">Salvar</button>
         <a th:href="@{/paginas/bichos}">Cancelar</a>
     </form>
+
 </body>
 </html>
