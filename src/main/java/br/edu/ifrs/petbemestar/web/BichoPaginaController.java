@@ -8,35 +8,37 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import br.edu.ifrs.petbemestar.dao.BichoDAO;
-import br.edu.ifrs.petbemestar.dao.TutorDAO;
+
 import br.edu.ifrs.petbemestar.dominio.Bicho;
 import br.edu.ifrs.petbemestar.dominio.TamanhoEnum;
 import br.edu.ifrs.petbemestar.dominio.TipoAnimalEnum;
+import br.edu.ifrs.petbemestar.servico.BichoService;
+import br.edu.ifrs.petbemestar.servico.RegraDeNegocioException;
+import br.edu.ifrs.petbemestar.servico.TutorService;
 import jakarta.validation.Valid;
 
 @Controller
 public class BichoPaginaController {
 
-	private BichoDAO bichoDAO;
-	private TutorDAO tutorDAO;
+	private final BichoService bichoService;
+	private final TutorService tutorService;
 	
 	
-	public BichoPaginaController(BichoDAO bichoDAO, TutorDAO tutorDAO) {
-		this.bichoDAO = bichoDAO;
-		this.tutorDAO = tutorDAO;
+	public BichoPaginaController(BichoService bichoService, TutorService tutorService) {
+		this.bichoService = bichoService;
+		this.tutorService = tutorService;
 	}
 	
 	
 	private void adicionarListasNoModel(Model model) {
-		model.addAttribute("tutores", tutorDAO.listarTodos());
+		model.addAttribute("tutores", tutorService.listarTodos());
 		model.addAttribute("tipos", TipoAnimalEnum.values());
 		model.addAttribute("tamanhos", TamanhoEnum.values());
 	}
 	
 	@GetMapping("/paginas/bichos")
 	public String listar(Model model) {
-		model.addAttribute("bichos", bichoDAO.listarTodos());
+		model.addAttribute("bichos", bichoService.listarTodos());
 		return "bichos/lista";
 	}
 	
@@ -54,13 +56,22 @@ public class BichoPaginaController {
 			adicionarListasNoModel(model);
 			return "bichos/formulario";
 		}
-		bichoDAO.salvar(bicho);
-		return "redirect:/paginas/bichos";
+		
+		try {
+			bichoService.salvar(bicho);
+			return "redirect:/paginas/bichos";
+		} catch (RegraDeNegocioException e) {
+			model.addAttribute("erro", e.getMessage());
+			adicionarListasNoModel(model);
+			return "bichos/formulario";
+			
+		} 
+		
 	}
 	
 	@GetMapping("/paginas/bichos/{id}/editar")
 	public String edicao(@PathVariable Long id, Model model) {
-		model.addAttribute("bicho", bichoDAO.buscarPorId(id));
+		model.addAttribute("bicho", bichoService.buscarPorId(id));
 		adicionarListasNoModel(model);
 		return "bichos/edicao";
 	}
@@ -71,13 +82,21 @@ public class BichoPaginaController {
 			adicionarListasNoModel(model);
 			return "bichos/edicao";
 		}
-		bichoDAO.atualizar(bicho);
-		return "redirect:/paginas/bichos";
+		
+		try {
+			bichoService.atualizar(bicho);
+			return "redirect:/paginas/bichos";
+		} catch (RegraDeNegocioException e) {
+			model.addAttribute("erro", e.getMessage());
+			adicionarListasNoModel(model);
+			return "bichos/edicao";
+			
+		} 
 	}
 	
 	@PostMapping("/paginas/bichos/{id}/remover")
 	public String remover(@PathVariable Long id) {
-		bichoDAO.remover(id);
+		bichoService.remover(id);
 		return "redirect:/paginas/bichos";
 	}
 	
