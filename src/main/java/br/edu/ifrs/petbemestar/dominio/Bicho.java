@@ -33,15 +33,15 @@ public class Bicho {
 	@NotNull(message = "Escolha o dono")
 	@ManyToOne
 	@JoinColumn(name = "tutor_id")
-	private Tutor dono;
+	private Tutor tutor;
 	
 	public Bicho() {}
 	
-	public Bicho(String nome, TipoAnimalEnum tipo, TamanhoEnum tamanho, Tutor dono) {
+	public Bicho(String nome, TipoAnimalEnum tipo, TamanhoEnum tamanho, Tutor tutor) {
 		setNome(nome);
 		setTipo(tipo);
 		setTamanho(tamanho);
-		setDono(dono);
+		setTutor(tutor);
 	}
 
 	public Long getId() {
@@ -76,17 +76,17 @@ public class Bicho {
 		this.tamanho = tamanho;
 	}
 
-	public Tutor getDono() {
-		return dono;
+	public Tutor getTutor() {
+		return tutor;
 	}
 
-	public void setDono(Tutor dono) {
-		this.dono = dono;
+	public void setTutor(Tutor tutor) {
+		this.tutor = tutor;
 	}
 
 	@Override
 	public String toString() {
-		return "Bicho [id=" + id + ", nome=" + nome + ", tipo=" + tipo + ", tamanho=" + tamanho + ", dono=" + dono
+		return "Bicho [id=" + id + ", nome=" + nome + ", tipo=" + tipo + ", tamanho=" + tamanho + ", tutor=" + tutor
 				+ "]";
 	}
 

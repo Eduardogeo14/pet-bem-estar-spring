@@ -1,9 +1,15 @@
 package br.edu.ifrs.petbemestar.dominio;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -21,6 +27,10 @@ public class Tutor {
 	
 	@NotBlank(message = "Telefone é obrigatório")
 	private String telefone;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "tutor")
+	private List<Bicho> bichos = new ArrayList<Bicho>();
 	
 	public Tutor() {}
 	
@@ -61,11 +71,21 @@ public class Tutor {
 	public String getTelefone() {
 		return this.telefone;
 	}
+	
+	public List<Bicho> getBichos() {
+		return bichos;
+	}
+
+	public void setBichos(List<Bicho> bichos) {
+		this.bichos = bichos;
+	}
 
 	@Override
 	public String toString() {
 		return "Tutor [id=" + id + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + "]";
 	}
+
+	
 
 	
 	
