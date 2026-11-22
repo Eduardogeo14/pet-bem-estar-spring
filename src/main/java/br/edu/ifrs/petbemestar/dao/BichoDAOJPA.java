@@ -29,7 +29,7 @@ public class BichoDAOJPA implements BichoDAO{
 	
 	@Override
 	public List<Bicho> listarTodos(){
-		return em.createQuery("Select b from Bicho b JOIN FETCH b.dono ORDER BY b.nome", Bicho.class).getResultList();
+		return em.createQuery("Select b from Bicho b JOIN FETCH b.tutor ORDER BY b.nome", Bicho.class).getResultList();
 	}
 	
 	@Override
@@ -45,5 +45,10 @@ public class BichoDAOJPA implements BichoDAO{
 		if(bicho != null) {
 			em.remove(bicho);
 		}
+	}
+	
+	@Override
+	public List<Bicho> buscarPorTutor(Long idTutor){
+		return em.createQuery("Select b From Bicho b WHERE b.tutor.id = :idTutor", Bicho.class).setParameter("idTutor", idTutor).getResultList();
 	}
 }

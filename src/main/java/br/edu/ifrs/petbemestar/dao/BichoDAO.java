@@ -11,4 +11,5 @@ public interface BichoDAO {
 	List<Bicho> listarTodos();
 	void atualizar(Bicho bicho);
 	void remover(Long id);
+	List<Bicho> buscarPorTutor(Long id);
 }
